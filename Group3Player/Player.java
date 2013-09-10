@@ -29,9 +29,9 @@ public class Player extends gunslinger.sim.Player
     //
     public void init(int nplayers, int[] friends, int enemies[])
     {
-    	this.nplayers = nplayers;
-    	this.friends = friends;
-    	this.enemies = enemies;    	
+        this.nplayers = nplayers;
+        this.friends = friends.clone();
+        this.enemies = enemies.clone();  	
     }
 
     // Pick a target to shoot
@@ -44,13 +44,49 @@ public class Player extends gunslinger.sim.Player
     //
     public int shoot(int[] prevRound, boolean[] alive){
     	
-    	for(int j = 0;j < prevRound.length; j++)
+    	
+    	
+    	if (prevRound == null)
     	{
-    		if(Arrays.asList(enemies).contains(prevRound[j]) && alive[prevRound[j]] && prevRound[j]!=id)
-    		{
-    			return prevRound[j];
-    		}	
+    		//First Round Strategy
+    		System.err.println("[ME] First Round, I am " + id);
     	}
+    	else
+    	{
+    		System.err.println("[ME] I am " + id);
+    		int[] localPrevRound = prevRound.clone();
+    		
+	    	//Prioritize person who shot you
+	    	for(int i = 0;i < localPrevRound.length; i++)
+	    	{
+	    		
+	    		System.err.println("[ME] Player " + i + " shot " + localPrevRound[i]);
+	        	
+	    		if( (localPrevRound[i] == id) && alive[i] )
+	    		{
+	    			return i;
+	    		}
+	       	}
+    	}
+    	
+    	
+//    	//Shoot at Enemies that shot at friends
+//    	for(int i = 0;i < prevRound.length; i++)
+//    	{
+//    		if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] )
+//    		{
+//    			
+//    		}
+//       	}
+//    	
+//    	//Shoot to kill
+//    	for(int j = 0;j < prevRound.length; j++)
+//    	{
+//    		if(Arrays.asList(enemies).contains(prevRound[j]) && alive[j] && prevRound[j]!=id)
+//    		{
+//    			return prevRound[j];
+//    		}	
+//    	}
     	
     	return -1;
     	
