@@ -61,24 +61,26 @@ public class Player extends gunslinger.sim.Player
 	    	{
 	    		
 	    		System.err.println("[ME] Player " + i + " shot " + localPrevRound[i]);
+	    		System.err.println("[ME] Player " + i + " shot " + prevRound[i]);
 	        	
 	    		if( (localPrevRound[i] == id) && alive[i] )
 	    		{
 	    			return i;
 	    		}
 	       	}
+			
+			 //Shoot at Enemies that shot at friends
+			for(int i = 0;i < localPrevRound.length; i++)
+			{
+				if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] && Arrays.asList(enemies).contains(i) )
+				{
+					return i;
+				}
+			}
     	}
     	
     	
-//    	//Shoot at Enemies that shot at friends
-//    	for(int i = 0;i < prevRound.length; i++)
-//    	{
-//    		if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] )
-//    		{
-//    			
-//    		}
-//       	}
-//    	
+
 //    	//Shoot to kill
 //    	for(int j = 0;j < prevRound.length; j++)
 //    	{
