@@ -57,34 +57,65 @@ public class Player extends gunslinger.sim.Player
     		
 	    	//Shoot person you shot at before if not dead
 
-    		int lastPersonShotAt = prevRound[id];
-	    		
-	    	if( lastPersonShotAt != -1 && alive[lastPersonShotAt] )
-	    	{
-				System.err.println("[ACTION] Trying to kill player  " + lastPersonShotAt + " since last time they did not die when I shot them");
-	    		return lastPersonShotAt;
-	    	}
-
+//    		int lastPersonShotAt = prevRound[id];
+//	    		
+//	    	if( lastPersonShotAt != -1 && alive[lastPersonShotAt] )
+//	    	{
+//				System.err.println("[ACTION] Trying to kill player  " + lastPersonShotAt + " since last time they did not die when I shot them");
+//	    		return lastPersonShotAt;
+//	    	}
+//
+//    		
+//	    	//Prioritize person who shot you
+//	    	for(int i = 0;i < prevRound.length; i++)
+//	    	{
+//	    		if( (prevRound[i] == id) && alive[i] )
+//	    		{
+//				
+//					System.err.println("[ACTION] Player " + i + " shot me, going to shoot back");
+//	    			return i;
+//	    		}
+//	       	}
     		
-	    	//Prioritize person who shot you
-	    	for(int i = 0;i < prevRound.length; i++)
-	    	{
-	    		if( (prevRound[i] == id) && alive[i] )
-	    		{
-				
-					System.err.println("[ACTION] Player " + i + " shot me, going to shoot back");
-	    			return i;
-	    		}
-	       	}
+    		System.err.println("friends " + Arrays.toString(friends));
+    		System.err.println("enemies " + Arrays.toString(enemies));
 			
 			//Shoot at Enemies that shot at friends
 			for(int i = 0;i < prevRound.length; i++)
 			{
-				if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] && Arrays.asList(enemies).contains(i) )
+				System.err.println("[INFO] " + i + " Shot at " + prevRound[i]);
+				
+				
+				for(int j = 0;j < friends.length; j++)
 				{
-					System.err.println("[ACTION] Shooting at " + i + " since they shot my friend and they are my enemy");
-					return i;
+					if (friends[j] == prevRound[i] && alive[i])
+					{
+						System.err.println("[INFO] Player " + i + " Shot my friend " + prevRound[i]);
+						System.err.println("[INFO] Player " + i + " alive status " + alive[i]);
+						for(int k = 0;k < enemies.length; k++)
+						{
+							if (enemies[k] == i)
+							{
+								System.err.println("[ACTION] Shooting at " + i + " since they shot my friend " + prevRound[i] + " and they are my enemy");
+								return i;
+							}
+							else
+								System.err.println("[INFO] " + i + " is not an enemy");
+						}
+					}
 				}
+//				if( Arrays.asList(friends).contains(prevRound[i]) ){
+//					System.err.println("[INFO] Player " + i + " Shot my friend " + prevRound[i]);
+//					System.err.println("[INFO] Player " + i + " dead or alive status " + alive[i]);
+//					if( Arrays.asList(enemies).contains(i) )
+//						System.err.println("[INFO] Player " + i + " is an enemy ");
+//				}
+				
+//				if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] && Arrays.asList(enemies).contains(i) )
+//				{
+//					System.err.println("[ACTION] Shooting at " + i + " since they shot my friend and they are my enemy");
+//					return i;
+//				}
 			}
     	}
     	
