@@ -48,33 +48,41 @@ public class Player extends gunslinger.sim.Player
     	
     	if (prevRound == null)
     	{
-    		//First Round Strategy
-    		System.err.println("[ME] First Round, I am " + id);
+    		//First Round Strategy -> wait do nothing
+    		System.err.println("[ME] First Round, I am " + id + " waiting...");
     	}
     	else
     	{
     		System.err.println("[ME] I am " + id);
-    		int[] localPrevRound = prevRound.clone();
+    		
+	    	//Shoot person you shot at before if not dead
+
+    		int lastPersonShotAt = prevRound[id];
+	    		
+	    	if( lastPersonShotAt != -1 && alive[lastPersonShotAt] )
+	    	{
+				System.err.println("[ACTION] Trying to kill player  " + lastPersonShotAt + " since last time they did not die when I shot them");
+	    		return lastPersonShotAt;
+	    	}
+
     		
 	    	//Prioritize person who shot you
-	    	for(int i = 0;i < localPrevRound.length; i++)
+	    	for(int i = 0;i < prevRound.length; i++)
 	    	{
-	    		
-	    		System.err.println("[ME] Player " + i + " shot " + localPrevRound[i]);
-	        	
-	    		if( (localPrevRound[i] == id) && alive[i] )
+	    		if( (prevRound[i] == id) && alive[i] )
 	    		{
 				
-					System.err.println("[ME] Player " + i + " shot me");
+					System.err.println("[ACTION] Player " + i + " shot me, going to shoot back");
 	    			return i;
 	    		}
 	       	}
 			
-			 //Shoot at Enemies that shot at friends
-			for(int i = 0;i < localPrevRound.length; i++)
+			//Shoot at Enemies that shot at friends
+			for(int i = 0;i < prevRound.length; i++)
 			{
 				if( Arrays.asList(friends).contains(prevRound[i]) && alive[i] && Arrays.asList(enemies).contains(i) )
 				{
+					System.err.println("[ACTION] Shooting at " + i + " since they shot my friend and they are my enemy");
 					return i;
 				}
 			}
