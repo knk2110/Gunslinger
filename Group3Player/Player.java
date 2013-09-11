@@ -61,10 +61,11 @@ public class Player extends gunslinger.sim.Player
 	    	{
 	    		
 	    		System.err.println("[ME] Player " + i + " shot " + localPrevRound[i]);
-	    		System.err.println("[ME] Player " + i + " shot " + prevRound[i]);
 	        	
 	    		if( (localPrevRound[i] == id) && alive[i] )
 	    		{
+				
+					System.err.println("[ME] Player " + i + " shot me");
 	    			return i;
 	    		}
 	       	}

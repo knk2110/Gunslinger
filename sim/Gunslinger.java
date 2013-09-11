@@ -34,7 +34,7 @@ public class Gunslinger
     private static boolean trace = true;
 
     // enable gui
-    private static boolean gui = false;
+    private static boolean gui = true;
     
 	// list files below a certain directory
 	// can filter those having a specific extension constraint
@@ -603,7 +603,10 @@ public class Gunslinger
         boolean killed = false;            
         // bullets each player got
         int[] bullets = new int[nplayers];
-            
+
+        // create a new array
+        current = new int[nplayers];
+
         // reset shoots
         for (int i = 0; i != nplayers; ++i)
             current[i] = -1;
