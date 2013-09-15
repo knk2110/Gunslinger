@@ -97,10 +97,10 @@ public class Player extends gunslinger.sim.Player
             roundHistory[roundNumber] = prevRound;
             this.calculatePriority();
 
-            System.out.println("prevRound");
+//            System.out.println("prevRound");
             for (int i=0; i<prevRound.length; i++) 
-                System.out.print(prevRound[i] + " ");
-            System.out.println();
+  //              System.out.print(prevRound[i] + " ");
+//            System.out.println();
 
             // calculate who to shoot by max priority
             target = -1;
@@ -127,14 +127,14 @@ public class Player extends gunslinger.sim.Player
     }
 
     public void print_priority() {
-        System.out.println("Priority for round " + roundNumber);
+  //      System.out.println("Priority for round " + roundNumber);
 
         for (int i=0; i<nplayers; i++) {
-            System.out.print(priority[i] + " ");
+    //        System.out.print(priority[i] + " ");
         }
 
-        System.out.println();
-        System.out.println();
+      //  System.out.println();
+      //  System.out.println();
     }
     
     public void calculatePriority() {
@@ -158,7 +158,7 @@ public class Player extends gunslinger.sim.Player
         // Anyone is shooting your friend
         for (int i = 0; i < nplayers; i++) {
             int player_being_shot = roundHistory[roundNumber][i];
-            System.out.println("player_being_shot " + player_being_shot);
+        //    System.out.println("player_being_shot " + player_being_shot);
             if (is_friend(player_being_shot)) {
 
                 if (!is_friend(i)) {

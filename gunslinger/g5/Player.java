@@ -17,7 +17,7 @@ public class Player extends gunslinger.sim.Player {
 	// name of the team
 	//
 	public String name() {
-		return "dumb" + (versions > 1 ? " v" + version : "");
+		return "Player5";
 	}
 
 	// Initialize the player
@@ -70,8 +70,8 @@ public class Player extends gunslinger.sim.Player {
 		//
 		// if (!shoot)
 		// return -1;
-		System.out.println("Friends: " + friends);
-		System.out.println("Enemies: " + enemies);
+//		System.out.println("Friends: " + friends);
+//		System.out.println("Enemies: " + enemies);
 		ArrayList<Integer> targets = new ArrayList<Integer>();
 		if (prevRound == null) {// First Round
 			if ((numNeutrals + enemies.size()) > friends.size()) {
