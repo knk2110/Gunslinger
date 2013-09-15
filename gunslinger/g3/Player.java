@@ -16,7 +16,7 @@ public class Player extends gunslinger.sim.Player
     int[] expected_shots;
 
     //for history storing
-    private int[][] history = new int[1000][nplayers];
+    private int[][] history;
     private int roundNum = 0;    
     
     // total versions of the same player
@@ -37,7 +37,15 @@ public class Player extends gunslinger.sim.Player
     {
         this.nplayers = nplayers;
         this.friends = friends.clone();
-        this.enemies = enemies.clone();  	
+        this.enemies = enemies.clone();
+	history = new int[1000][nplayers];
+	for (int i = 0; i < history.length; i++)
+	{
+		for (int j = 0; j < history[0].length; j++)
+		{
+			history[i][j] = 0;
+		}
+	}  	
     }
 	
 	//Returns true if the game is in equilibrium (same shots by each player in the past three rounds) and false otherwise.
@@ -112,7 +120,7 @@ public class Player extends gunslinger.sim.Player
 			
 				//Use a weighted moving average of shots over the past rounds to calculate the expected 
 				//number of shots for each player
-				expected_shots[i]= .5 * history[rounds-1][i] + .3 * history[rounds-2][i] + .2 * history[rounds-3][i];
+				expected_shots[i]= .5 * history[roundNum-1][i] + .3 * history[roundNum-2][i] + .2 * history[roundNum-3][i];
 			
 			}else{
 			
@@ -143,16 +151,23 @@ public class Player extends gunslinger.sim.Player
     	else
     	{
 		//update history
+		System.out.println("UPDATING HISTORY");
 		for (int i = 0; i < prevRound.length; i++)
 		{
+			System.out.println("history["+roundNum+"]["+i+"] = " + prevRound[i]);
 			history[roundNum][i] = prevRound[i];
 		}
+		System.out.println("DONE UPDATING HISTORY");
+		
+		//advance round count
+		roundNum++;
 		
     		//Priority 1: Shoot person you shot at before if they are not dead
     		int lastPersonShotAt = prevRound[id];
 	    		
 	    	if( lastPersonShotAt != -1 && alive[lastPersonShotAt] )
 	    	{
+			printHistory();
 	    		return lastPersonShotAt;
 	    	}
 
@@ -161,6 +176,7 @@ public class Player extends gunslinger.sim.Player
 	    	{
 	    		if( (prevRound[i] == id) && alive[i] )
 	    		{
+				printHistory();
 	    			return i;
 	    		}
 	       	}
@@ -178,35 +194,38 @@ public class Player extends gunslinger.sim.Player
 						{
 							if (enemies[k] == i)
 							{
+								printHistory();
 								return i;
 							}
 							//else keep a low profile by not killing neutral players
 						}
 					}
 				}
-			}
-		//advance round count
-		roundNum++;
-		
-		//test history
-		System.out.println("HISTORY");
-		loopla:
-		for (int i = 0; i < history.length; i++)
-		{
-			for (int j = 0; j < history[0].length; j++)
-			{
-				if(history[i][j]== null)
-				{
-					break loopla;
-				}
-				System.out.println(history[i][j]);
-			}
-			System.out.println();
-		}		
+			}		
     	}
     	    	
+	printHistory();
     	return -1;
     	
     }
-    
+   
+   /** for testing purposes only. print history every time we return a shot.**/
+   public void printHistory()
+   {
+	System.out.println("Printing history:");
+	
+	loop:
+	for (int i = 0; i < history.length; i++)
+	{
+		for (int j = 0; j < history[0].length; j++)
+		{
+			if (history[i][j] == 0)
+			{
+				break loop;
+			}
+			System.out.println(history[i][j] + "\t");
+		}
+	}
+	System.out.println("Done printing history");
+   } 
 }

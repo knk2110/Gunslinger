@@ -1,4 +1,4 @@
-package gunslinger.Group3Player;
+package gunslinger.g3_v1;
 
 import java.util.*;
 
