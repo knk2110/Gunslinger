@@ -1,4 +1,4 @@
-package gunslinger.G4PlayerV1;
+package gunslinger.g4;
 
 import java.util.*;
 
