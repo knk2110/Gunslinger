@@ -1,6 +1,7 @@
 package gunslinger.sim;
 
 import gunslinger.sim.Player;
+import gunslinger.sim.PlayerTask;
 
 class PlayTask extends Thread
 {

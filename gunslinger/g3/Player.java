@@ -13,7 +13,11 @@ public class Player extends gunslinger.sim.Player
     private int[] friends;
     private int[] enemies;
 	
-	int[] expected_shots;
+    int[] expected_shots;
+
+    //for history storing
+    private int[][] history = new int[1000][nplayers];
+    private int roundNum = 0;    
     
     // total versions of the same player
     private static int versions = 0;
@@ -39,19 +43,20 @@ public class Player extends gunslinger.sim.Player
 	//Returns true if the game is in equilibrium (same shots by each player in the past three rounds) and false otherwise.
 	public boolean equilibrium(int[] prevRound, boolean[] alive){
 	
-		//Temporary until histories is implemented
+	/*	//Temporary until histories is implemented
 		int rounds = 5;
 		int[][] history = new int[rounds-1][alive.length];
-		
+	*/
+			
 		for(int j= 0;j<alive.length;j++){
 		
 			//Player j's target in the most recent round.
-			int enemyTarget = history[rounds-1][j];
+			int enemyTarget = history[roundNum-1][j];
 		
 			for(int i= 1;i<3;i++){
 			
 				//If a player shot differently in the past three rounds, the game is not in equilibrium so return false.
-				if(history[rounds-1-i][j]!=enemyTarget)
+				if(history[roundNum-1-i][j]!=enemyTarget)
 					return false;
 		
 		
@@ -96,8 +101,8 @@ public class Player extends gunslinger.sim.Player
 	
 	
 		//Temporary until histories is implemented
-		int rounds = 5;
-		int[][] history = new int[rounds-1][alive.length];
+	/*	int rounds = 5;
+		int[][] history = new int[rounds-1][alive.length];*/
 		double[] expected_shots= new double[alive.length];
 	
 		for(int i = 0;i<alive.length;i++){
@@ -137,6 +142,11 @@ public class Player extends gunslinger.sim.Player
     	}
     	else
     	{
+		//update history
+		for (int i = 0; i < prevRound.length; i++)
+		{
+			history[roundNum][i] = prevRound[i];
+		}
 		
     		//Priority 1: Shoot person you shot at before if they are not dead
     		int lastPersonShotAt = prevRound[id];
@@ -174,7 +184,25 @@ public class Player extends gunslinger.sim.Player
 						}
 					}
 				}
-			}		
+			}
+		//advance round count
+		roundNum++;
+		
+		//test history
+		System.out.println("HISTORY");
+		loopla:
+		for (int i = 0; i < history.length; i++)
+		{
+			for (int j = 0; j < history[0].length; j++)
+			{
+				if(history[i][j]== null)
+				{
+					break loopla;
+				}
+				System.out.println(history[i][j]);
+			}
+			System.out.println();
+		}		
     	}
     	    	
     	return -1;
