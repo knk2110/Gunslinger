@@ -38,7 +38,9 @@ public class Player extends gunslinger.sim.Player
         this.nplayers = nplayers;
         this.friends = friends.clone();
         this.enemies = enemies.clone();
-	history = new int[1000][nplayers];
+	history = new int[1000][nplayers]; 	//todo: add support for > 1000 rounds?
+	
+	//initialize all of history to -2
 	for (int i = 0; i < history.length; i++)
 	{
 		for (int j = 0; j < history[0].length; j++)
@@ -153,14 +155,10 @@ public class Player extends gunslinger.sim.Player
 		roundNum++;
 		int prevRoundNum = roundNum-1;
 		//update history
-		System.out.println("[PLAYER3] Updating history:");
 		for (int i = 0; i < prevRound.length; i++)
 		{
-			System.out.println("[PLAYER3] history["+prevRoundNum+"]["+i+"] = " + prevRound[i]);
 			history[prevRoundNum][i] = prevRound[i];
 		}
-		System.out.println("[PLAYER3] history test: ["+prevRoundNum+"]["+(prevRound.length-1)+"] = " + history[prevRoundNum][prevRound.length-1]);
-		System.out.println("[PLAYER3] Done updating history");
 		
     		//Priority 1: Shoot person you shot at before if they are not dead
     		int lastPersonShotAt = prevRound[id];
@@ -213,8 +211,6 @@ public class Player extends gunslinger.sim.Player
    public void printHistory()
    {
 	System.out.println("[PLAYER3] Printing history:");
- 	System.out.println("[PLAYER3] history.length: " + history.length);
-	System.out.println("[PLAYER3] history[0].length: " + history[0].length);	
 	loop:
 	for (int i = 0; i < history.length; i++)
 	{
@@ -226,7 +222,7 @@ public class Player extends gunslinger.sim.Player
 			}
 			System.out.print(history[i][j] + "\t");
 		}
-		System.out.println("\n");
+		System.out.print("\n");
 	}
 	System.out.println("[PLAYER3]Done printing history");
    } 
