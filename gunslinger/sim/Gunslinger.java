@@ -41,7 +41,7 @@ public class Gunslinger
     private static boolean trace = true;
 
     // enable gui
-    private static boolean gui = false;
+    private static boolean gui = true;
 
     // time limit per move
     private static int timeout = DEFAULT_TIMEOUT;
