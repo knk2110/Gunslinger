@@ -28,7 +28,7 @@ public class Player extends gunslinger.sim.Player
 	//
 	public String name()
 	{
-		return "dumb5" + (versions > 1 ? " v" + version : "");
+		return "Player 6" + (versions > 1 ? " v" + version : "");
 	}
     // Initialize the player
     //
@@ -124,29 +124,29 @@ public class Player extends gunslinger.sim.Player
 
 		else
 		{
-			for (int i=0 ; i<nplayers ; i++)
-				System.out.println("Prev Round: " + prevRound[i]);
+			//for (int i=0 ; i<nplayers ; i++)
+		//		System.out.println("Prev Round: " + prevRound[i]);
 		
 			// Update History
-			System.out.println("Updating History...");
+		//	System.out.println("Updating History...");
 			for (int i = 0; i < nplayers; i++)
 			{
 				if(prevRound[i] != -1)
 				{
 					(history[i][prevRound[i]])++;
-					System.out.println(i + " " + prevRound[i]+ "  " + history[i][prevRound[i]]);
+		//			System.out.println(i + " " + prevRound[i]+ "  " + history[i][prevRound[i]]);
 				}
 			}
 
 			// Print History
-			System.out.println("Printing History...");
+		//	System.out.println("Printing History...");
 			for (int i = 0; i < nplayers; i++)
 			{
 				for (int j = 0; j < nplayers; j++)
 				{
-					System.out.print(history[i][j] + " ");
+		//			System.out.print(history[i][j] + " ");
 				}
-				System.out.println();
+		//		System.out.println();
 			}
 
 			// Make my shooter my prime target
@@ -159,7 +159,7 @@ public class Player extends gunslinger.sim.Player
 						if(prevRound[i] == id)
 						{
 							target = i;
-							System.out.println("New Target: " + i);
+				//			System.out.println("New Target: " + i);
 						
 							if(!current_alive_turned_enemies.contains(i) && !enemies.contains(i) && !friends.contains(i))
 							{
@@ -198,7 +198,7 @@ public class Player extends gunslinger.sim.Player
 							int score = history[i][current_alive_friends.get(k)] + (current_alive_enemy_score.containsKey(i)?current_alive_enemy_score.get(i):0);
 							current_alive_enemy_score.put(i,score);
 
-							System.out.println("Added " + i + "to enemy list since it shot " + current_alive_friends.get(k));
+				//			System.out.println("Added " + i + "to enemy list since it shot " + current_alive_friends.get(k));
 							current_alive_enemies.add(i);
 						}
 					}

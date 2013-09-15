@@ -76,7 +76,7 @@ public class Player extends gunslinger.sim.Player
     
     public void attentionSeekingPrint(String s)
     {
-    	System.out.println("----------------\n"+s+"\n-----------------");
+//    	System.out.println("----------------\n"+s+"\n-----------------");
     }
     
     private int getMyTarget(int[] shotAt) {
@@ -108,7 +108,7 @@ public class Player extends gunslinger.sim.Player
 
 	private void gaugeSeverity(int shooter,int target, boolean[] alive) {
 		
-		System.out.println(shooter+" "+target);
+//		System.out.println(shooter+" "+target);
 		
 		if(target==-1 || shooter==this.id)
 			return;

@@ -1,4 +1,4 @@
-package gunslinger.Group3Player;
+package gunslinger.g3_v1;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class Player extends gunslinger.sim.Player
     //
     public String name()
     {
-        return "Group3Player" + (versions > 1 ? " v" + version : "");
+        return "OLDgroup3player" + (versions > 1 ? " v" + version : "");
     }
     
     // Initialize the player
@@ -47,7 +47,7 @@ public class Player extends gunslinger.sim.Player
     	if (prevRound == null)
     	{
     		//First Round Strategy -> wait do nothing
-    		System.err.println("[ME] First Round, I am " + id + " waiting...");
+    	//	System.err.println("[ME] First Round, I am " + id + " waiting...");
     	}
     	else
     	{
