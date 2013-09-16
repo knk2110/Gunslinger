@@ -1,0 +1,3 @@
+cd c:\users\hrs\desktop\code\PPS\Gunslinger
+javac gunslinger\hrs\Player.java
+java gunslinger.sim.Gunslinger test.list 2 2

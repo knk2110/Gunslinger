@@ -1,0 +1,73 @@
+Init:
+1
+[-1, 2, 0, 1, 0, 0, -1, 0, 1]
+
+Round 0:
+null
+[true, true, true, true, true, true, true, true, true]
+
+Round 1:
+[-1, -1, -1, 4, 0, 4, 3, 0, 3]
+[false, true, true, false, false, true, true, true, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 2:
+[-1, -1, -1, -1, -1, -1, 8, -1, -1]
+[false, true, true, false, false, true, true, true, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, 6]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0]
+
+Round 3:
+[-1, 6, -1, -1, -1, 1, 8, -1, 6]
+[false, true, true, false, false, true, false, true, true]
+[-1, 5, -1, -1, -1, -1, -1, -1, 6]
+[0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+
+Round 4:
+[-1, 5, -1, -1, -1, 8, -1, -1, 5]
+[false, true, true, false, false, false, false, true, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, 5]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+
+Round 5:
+[-1, -1, -1, -1, -1, -1, -1, 1, -1]
+[false, true, true, false, false, false, false, true, true]
+[-1, 7, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 6:
+[-1, 7, -1, -1, -1, -1, -1, -1, 7]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 7:
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 8:
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 9:
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 10:
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Round 11:
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[false, true, true, false, false, false, false, false, true]
+[-1, -1, -1, -1, -1, -1, -1, -1, -1]
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]

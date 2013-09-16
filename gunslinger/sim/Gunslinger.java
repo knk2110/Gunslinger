@@ -30,10 +30,10 @@ public class Gunslinger
     private static String DEFAULT_PLAYERLIST = "players.list";
     private static int DEFAULT_GAMES = 1;
     private static int DEFAULT_TIMEOUT = 1000; // 1000 milliseconds
-    
+
     // recompile .class file?
-    private static boolean recompile = true;
-    
+    private static boolean recompile = false;
+
     // print more details?
     private static boolean verbose = true;
 
@@ -45,7 +45,7 @@ public class Gunslinger
 
     // time limit per move
     private static int timeout = DEFAULT_TIMEOUT;
-    
+
 	// list files below a certain directory
 	// can filter those having a specific extension constraint
     //
@@ -76,7 +76,7 @@ public class Gunslinger
                 if (line.trim() != "")
                     namelist.add(line);
         } catch (Exception e) {
-            e.printStackTrace();        
+            e.printStackTrace();
         }
         return namelist.toArray(new String[0]);
     }
@@ -141,7 +141,7 @@ public class Gunslinger
                 // set name of player and append on list
 
                 // add a small delay to avoid random seed collision
-                Thread.sleep(5);                
+                Thread.sleep(5);
                 Player player = (Player) playerClass.newInstance();
                 if (player == null)
                     throw new Exception("Load error");
@@ -156,7 +156,7 @@ public class Gunslinger
 		return playersList.toArray(new Player[0]);
 	}
 
-    
+
     // Gunslinger <playerlist> <num of enermies> <num of friends> <gui> <recompile> <verbose> <trace> <games> <timeout>
     //
 	public static void main(String[] args) throws Exception
@@ -178,7 +178,7 @@ public class Gunslinger
                 nenemies = Integer.parseInt(args[1]);
             else
                 nenemies = DEFAULT_ENEMIES;
-      
+
             // number of friends
             if (args.length > 2)
                 nfriends = Integer.parseInt(args[2]);
@@ -196,7 +196,7 @@ public class Gunslinger
             // verbose
             if (args.length > 5)
                 verbose = Boolean.parseBoolean(args[5]);
-        
+
             // trace
             if (args.length > 6)
                 trace = Boolean.parseBoolean(args[6]);
@@ -214,10 +214,10 @@ public class Gunslinger
             System.err.println("Usage: java Gunslinger <playerlist> <num of enermies> <num of friends> <gui> <recompile> <verbose> <trace> <games> <timeout>");
             System.exit(1);
         }
-            
+
         playerNames = loadPlayerNames(playerPath);
         int nplayers = playerNames.length;
-        
+
         // check parameters
         if (nenemies + nfriends >= nplayers) {
             System.err.println("[Error] Invalid parameters: e+f<N");
@@ -245,7 +245,7 @@ public class Gunslinger
 
                 Player[] players = loadPlayers(playerPath);
                 shufflePlayers(players);
-                
+
                 // Create and initialize the game
                 Gunslinger game = new Gunslinger(nenemies, nfriends, players);
                 game.init();
@@ -264,7 +264,7 @@ public class Gunslinger
             // Force stopping all pending threads
             System.exit(0);
         }
-    }        
+    }
 
     // shuffle the players to decide their index
     private static void shufflePlayers(Player[] players)
@@ -287,10 +287,10 @@ public class Gunslinger
         System.err.println("# enemies/player: " + nenemies);
         printRelationship();
     }
-    
+
     private static void printRanks(int[][] ranks) {
         System.err.println("##### Tournament ranking #####");
-        
+
         // print header
         System.err.printf("%8s", " ");
         for (int i = 1; i <= ranks.length; ++i)
@@ -298,7 +298,7 @@ public class Gunslinger
         System.err.println();
 
         for (int i = 0; i != ranks.length; ++i) {
-            System.err.printf("%8s", playerNames[i]); 
+            System.err.printf("%8s", playerNames[i]);
             for (int j = 0; j != ranks.length; ++j) {
                 System.err.printf("%3d ", ranks[i][j]);
             }
@@ -315,7 +315,7 @@ public class Gunslinger
         this.players = players;
     }
 
-    // Initialize the game   
+    // Initialize the game
     //
     private void init()
     {
@@ -365,15 +365,15 @@ public class Gunslinger
             // generate a random permutation of following players
             Integer[] permlist = baselist.subList(p+1,nplayers).toArray(new Integer[0]);
             java.util.Collections.shuffle(Arrays.asList(permlist), gen);
-            
+
             // pick top-k of the permuation
             for (int i = 0; newfriends > 0 && i != permlist.length; ++i) {
                 int friend = permlist[i];
-                
+
                 // skip player that has already had enough friends
                 if (curfriends[friend] == nfriends)
                     continue;
-                
+
                 // set friendship
                 relationship[p][friend] = 1;
                 relationship[friend][p] = 1;
@@ -400,19 +400,19 @@ public class Gunslinger
     private int[][] genEnmityship(int nplayers, int nenemies, int[][] relationship)
     {
         int[][] enmityship = new int[nplayers][nenemies];
-        
+
         for (int p = 0; p != nplayers; ++p) {
             ArrayList<Integer> plist = new ArrayList<Integer>();
             for (int i = 0; i != nplayers; ++i)
                 if (i != p && relationship[p][i] == 0)
                     plist.add(i);
             java.util.Collections.shuffle(plist);
-            
+
             for (int e = 0; e != nenemies; ++e) {
                 relationship[p][plist.get(e)] = -1;
                 enmityship[p][e] = plist.get(e);
             }
-        }            
+        }
         return enmityship;
     }
 
@@ -435,7 +435,7 @@ public class Gunslinger
 
             // generate the relation graph in advance
             generateRelationGraph();
-            
+
             setPreferredSize(new Dimension(1000, 600));
             setOpaque(true);
             setBackground(Color.WHITE);
@@ -471,7 +471,7 @@ public class Gunslinger
         void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {
             Graphics2D g = (Graphics2D) g1.create();
             int smallOffset = 10;
-            
+
             double dx = x2 - x1, dy = y2 - y1;
             double angle = Math.atan2(dy, dx);
             int len = (int) Math.sqrt(dx*dx + dy*dy) - smallOffset;
@@ -525,7 +525,7 @@ public class Gunslinger
                 g.fillOval(xx[i], yy[i], PlayerSize, PlayerSize);
                 g.drawString(players[i].name(), xx[i], yy[i]);
             }
-            
+
             // draw friendship
             for (int i = 0; i != nplayers; ++i) {
                 for (int j = 0; j != nplayers; ++j) {
@@ -539,7 +539,7 @@ public class Gunslinger
                 }
             }
         }
-        
+
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -554,7 +554,7 @@ public class Gunslinger
             if (actionImg != null)
                 g.drawImage(actionImg, 50, 150, null);
         }
-        
+
         // paint each step
         //
         private void drawStep() {
@@ -585,12 +585,12 @@ public class Gunslinger
                 else {
                     // compute the scores
                     computeScores();
-                    
+
                     printScores();
 
                     // Disable the Next Button
                     nextButton.setEnabled(false);
-                    
+
                 }
             }
             else if (e.getSource() == showHideButton)
@@ -606,8 +606,8 @@ public class Gunslinger
 
             // Create a frame
             mainFrame = new JFrame();
-           
-            nextButton = new JButton("Next"); 
+
+            nextButton = new JButton("Next");
             nextButton.addActionListener(this);
             nextButton.setBounds(0, 0, 100, 50);
 
@@ -624,7 +624,7 @@ public class Gunslinger
             mainFrame.pack();
             mainFrame.setVisible(true);
         }
-        
+
         // display position of each player
         private int[] xx;
         private int[] yy;
@@ -647,7 +647,7 @@ public class Gunslinger
         round++;
 
         // anyone is killed in this round?
-        boolean killed = false;            
+        boolean killed = false;
         // bullets each player got
         int[] bullets = new int[nplayers];
 
@@ -670,7 +670,7 @@ public class Gunslinger
         for (int p = 0; p != players.length; ++p) {
             // initialize the player's action to shoot nothing
             current[p] = -1;
-            
+
             // skip dead player or buggy player
             if (!alive[p] || violation[p])
                 continue;
@@ -683,7 +683,7 @@ public class Gunslinger
             ExecutorService executor = Executors.newSingleThreadExecutor();
             PlayTask task = new PlayTask(players[p], prev, alive.clone());
             executor.execute(task);
-            
+
             executor.shutdownNow();
 
             try {
@@ -729,7 +729,7 @@ public class Gunslinger
                 else {
                     bullets[target]++;
                     current[p] = target;
-                        
+
                     if (verbose)
                         System.err.println("Round " + round + ": " + players[p].name() + " shoots " + players[target].name());
 
@@ -739,10 +739,10 @@ public class Gunslinger
                 System.err.println(players[p].name() + " shoots an invalid target.");
             }
         }
-            
+
         if (verbose)
             System.err.println("-------------------------");
- 
+
         // update game stats
         for (int p = 0; p != nplayers; ++p) {
             if (alive[p] && bullets[p] > 1) {
@@ -753,7 +753,7 @@ public class Gunslinger
                     System.err.println("Round " + round +": " + players[p].name() + " is killed");
             }
         }
-            
+
         if (killed)
             npeace = 0;
         else
@@ -777,7 +777,7 @@ public class Gunslinger
 
     // play with command line
     //
-    private void play() 
+    private void play()
     {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
@@ -804,7 +804,7 @@ public class Gunslinger
         printScores();
     }
 
-    
+
     // validate a player's shoot
     //
     private boolean validate(int p, int target)
@@ -823,7 +823,7 @@ public class Gunslinger
             valid = true;
 
         if (!valid) {
-            System.err.println(players[p].name() + " attempted to shoot " + players[target].name() + " <validation fails>: " + msg);            
+            System.err.println(players[p].name() + " attempted to shoot " + players[target].name() + " <validation fails>: " + msg);
         }
 
         return valid;
@@ -839,10 +839,10 @@ public class Gunslinger
             if (alive[p])
                 scores[p]++;
             for (int i = 0; i != nplayers; ++i)
-                if ((relationship[p][i] > 0 && alive[i]) || 
+                if ((relationship[p][i] > 0 && alive[i]) ||
                     (relationship[p][i] < 0 && !alive[i]))
                     scores[p]++;
-        }            
+        }
     }
 
     // Print the relationshp matrix
@@ -908,7 +908,7 @@ public class Gunslinger
             teamNo[i] = i;
             sortedScores[i] = scores[i];
         }
-        
+
         // sort by highest score
         sortByScore(teamNo, sortedScores);
 
@@ -924,7 +924,7 @@ public class Gunslinger
 
         return rank;
     }
-    
+
     // random generator
     private static Random gen = new Random();
     private static String[] playerNames;
