@@ -1,4 +1,4 @@
-package gunslinger.g1;
+package gunslinger.g1_v2;
 import java.util.*;
 
 /*

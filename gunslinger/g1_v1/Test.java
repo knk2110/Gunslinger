@@ -1,13 +1,13 @@
-package gunslinger.g1;
+package gunslinger.g1_v1;
 
 import java.util.*;
-import gunslinger.g1.Player;
+import gunslinger.g1_v1.Player;
 
 public class Test
 {
-    private static gunslinger.g1.Player player;
+    private static gunslinger.g1_v1.Player player;
     public static void main(String[] args){
-        player = new gunslinger.g1.Player();
+        player = new gunslinger.g1_v1.Player();
         player.init(5, new int[]{2,3}, new int[]{4});
 
         System.out.println("Testing player " + player.name());

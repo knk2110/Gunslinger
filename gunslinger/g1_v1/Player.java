@@ -1,7 +1,7 @@
-package gunslinger.g1;
+package gunslinger.g1_v1;
 
 import java.util.*;
-import gunslinger.g1.AiPlayer;
+import gunslinger.g1_v1.AiPlayer;
 
 // An example player
 // Extends gunslinger.sim.Player to start with your player
