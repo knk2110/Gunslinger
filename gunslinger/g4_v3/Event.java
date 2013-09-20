@@ -1,6 +1,6 @@
-package gunslinger.g4;
+package gunslinger.g4_v3;
 
-import gunslinger.g4.GameHistory.PlayerType;
+import gunslinger.g4_v3.GameHistory.PlayerType;
 
 public class Event implements Comparable<Event> {
 	// The threat level that this event poses. Higher numbers denote greater

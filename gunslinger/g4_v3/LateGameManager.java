@@ -1,4 +1,4 @@
-package gunslinger.g4;
+package gunslinger.g4_v3;
 
 public class LateGameManager implements RoundListener {
     private int mTarget;

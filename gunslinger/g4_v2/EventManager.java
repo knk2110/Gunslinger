@@ -1,4 +1,4 @@
-package gunslinger.g4jb;
+package gunslinger.g4_v2;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
