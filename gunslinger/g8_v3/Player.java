@@ -1,4 +1,4 @@
-package gunslinger.g8;
+package gunslinger.g8_v3;
 
 import java.util.*;
 import java.io.*;

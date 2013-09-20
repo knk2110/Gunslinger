@@ -1,5 +1,5 @@
 //Deliverable3 9/17
-package gunslinger.g7;
+package gunslinger.g7_v3;
 
 public class PlayerStats 
 {

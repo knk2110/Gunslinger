@@ -1,5 +1,5 @@
 //Deliverable2 9/15
-package gunslinger.g7;
+package gunslinger.g7_v2;
 
 import java.util.*;
 
