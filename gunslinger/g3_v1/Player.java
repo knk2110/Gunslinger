@@ -22,7 +22,7 @@ public class Player extends gunslinger.sim.Player
     //
     public String name()
     {
-        return "Group3Player" + (versions > 1 ? " v" + version : "");
+        return "g3v1" + (versions > 1 ? " v" + version : "");
     }
     
     // Initialize the player

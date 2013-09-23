@@ -14,7 +14,7 @@ public class Player extends gunslinger.sim.Player
 
     private static int versions = 0;
     private int version = versions++;
-    public String name() { return "g3" + (versions > 1 ? " v" + version : ""); }
+    public String name() { return "g3v3" + (versions > 1 ? " v" + version : ""); }
 
     public void init(int nplayers, int[] friends, int enemies[])
     {
